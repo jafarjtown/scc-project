@@ -1,0 +1,1 @@
+web: gunicorn SPRINT_PROJECT.wsgi:application
