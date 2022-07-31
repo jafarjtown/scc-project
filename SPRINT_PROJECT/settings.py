@@ -40,14 +40,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'crispy_forms',
-    'django_countries',
+    
+    # our apps
+    'restaurant',
+    'kitchen',
+    'authentication'
+    
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'crispy_forms',
+    # 'django_countries',
 
 
-    'core',
+    # 'core',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +71,7 @@ ROOT_URLCONF = 'SPRINT_PROJECT.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,12 +130,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -148,6 +148,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 
 SITE_ID = 1
 
-# CRISPY FORMS
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+AUTH_USER_MODEL  = 'authentication.User'
+LOGIN_URL = 'authentication:login'

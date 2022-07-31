@@ -1,0 +1,212 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+    margin: 0;
+    
+}
+body{
+    margin: 0;
+    --background-color: lightgray;
+    background-color: var(--background-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+main{
+    width: 100%;
+   flex: 1;
+   display: flex;
+}
+header{
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid;
+}
+header button{
+    cursor: pointer;
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    font-size: larger;
+}
+aside{
+    display: none;
+    flex-direction: column;
+    border-right: 1px solid;
+    width: fit-content;
+    height: 100%;
+}
+aside.show{
+    display: flex;
+}
+aside ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+}
+aside a{
+    text-decoration: none;
+    color:  black;
+    font-weight: 600;
+    font-size: 5vh;
+}
+section.view{
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.view-name{
+    font-weight: 600;
+    font-size: larger;
+}
+.view-id{
+    color: rgb(83, 83, 83);
+}
+.shortcuts{
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.shortcut{
+    background-color: red;
+    margin: 2vw;
+    padding: 3vh;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+}
+.shortcut.info{
+    background-color: lightblue;
+}
+.shortcut.his{
+    background-color: lightyellow;
+}
+.shortcut.pen{
+    background-color: rgb(240, 152, 152);
+}
+.updates{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    /* height: 100px; */
+}
+.update{
+    width: 40%;
+    height: 200px;
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 10px;
+    min-height: 50vh;
+    background-color: rgb(245, 245, 245);
+}
+.update table,.update tr, .update td,.status table, .status tr, .status td{
+    border: 1px solid;
+    border-collapse: collapse;
+    font-size: .9em;
+    
+}
+.update thead, .status thead{
+    background-color: white;
+    font-weight: 600;
+}
+.update table, .status table{
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+.update td, .status td{
+    height: 5.5vh;
+    text-align: left;
+}
+.status{
+    align-self: center;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(245, 245, 245);
+    height: 100%;
+    border-radius: 10px;
+    padding: 10px;
+}
+.status table{
+    width: 100%;
+}
+.status-confirm{
+    padding: 3px 10px;
+    margin: 5px;
+    font-weight: 520;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+
+}
+.profile{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 20%;
+}.profile .left, .profile .right{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.profile-info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.profile-info .title{
+    color: rgb(12, 88, 12);
+    font-weight: 600;
+}
+.profile-info .value{
+    background-color: lightgray;
+    padding: 10px;
+    width: 300px;
+}
+.profile-bottom .profile-info{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.profile-update-btn{
+    align-self: flex-end;
+    background-color: rgb(12, 88, 12);
+    padding: 10px 20px;
+    margin-right: 10%;
+    color: white;
+    font-weight: 600;
+    border: 1px solid;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 445px) {
+    .status{
+        width: 95%;
+    }
+    .profile, .updates{
+        margin-top: 10px;
+       flex-direction: column;
+       gap: 10px;
+    }
+.update{
+    width: 100%;
+
+}
+    .profile .value,.profile-bottom .value{
+        width: 100%;
+    }
+    
+}

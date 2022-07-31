@@ -1,0 +1,71 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="signin-wrapper">
+  <form action="" method='post'>
+    {% csrf_token %}
+    <div class="head">
+      <h2>Customer Sign Up <i class="fa fa-user-plus"></i> </h2>
+    </div>
+    <div class="body">
+      <div class="left">
+        <label for="fname">
+          first name
+          <input type="text" id="fname" name='first name' />
+        </label>
+        <label for="dob">
+          Date of Birth
+          <input id="dob" type="date" name='date of birth' />
+        </label>
+        <label for="email">
+          Email
+          <input id="email" type="email" name='email' /> </label
+        ><label for="password1">
+          Password
+          <input id="password1" type="password" name='p1'
+        /></label>
+      </div>
+      <img src="{% static 'img/logo_pic 1.jpg' %}" alt="" srcset="">
+      <div class="right">
+        <label for="lname" >
+          Last name:
+          <input type="text" id="lname" name='last name'/>
+        </label>
+        <label for="pn">
+          Phone No:
+          <input id="pn" type="tel" name='phone number' />
+        </label>
+        <label for="username">
+          Username
+          <input id="username" type="tezt" name='username'/> </label
+        ><label for="password2">
+          ConfirmPassword
+          <input id="password2" type="password" name='p2'
+        /></label>
+      </div>
+    </div>
+    <div class="down">
+      <div class="top">
+        <label for="staff">
+            Staff
+            <input id="staff"  type="radio" name="account_type" value='SF'/>
+        </label>
+        <label for="student">
+            Student
+            <input id="student" type="radio" name="account_type" value='ST' />
+        </label>
+        <label for="orders">
+            Others
+            <input id="orders" type="radio" name="account_type" value='OT'/>
+        </label>
+      </div>
+      <label for="is">
+          Staff|Student|others ID
+          <input id="id" type="text" name='account_id'></label>
+    </div>
+    <button type="submit">Sign Up</button>
+  </form>
+</div>
+{% endblock main %}

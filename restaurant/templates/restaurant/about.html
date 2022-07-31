@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+    <div class="order-wrap">
+        <div>
+            <img src="{% static 'img/logo_pic 2.jpg' %}" alt="">
+            <div class="order-greet">
+                <p>Welcome To Our Restuarant</p>
+            <h1>Amazing & Delicious</h1>
+        <p>Looking for tasty and fresh breakfast, lunche & Dinner?
+            <br> 
+        Place your Order Now</p>
+            </div>
+        <a href="/" class="order-btn">Order Now...</a>
+        <div class="address">
+            <ul>
+                <li><i class="fa fa-phone"></i> <a href="/"> +2340000099</a></li>
+                <li><i class="fab fa-twitter"></i> <a href="/"> @StemCorderKitchen</a></li>
+                <li><i class="fab fa-instagram"></i> <a href="/"> StemCorderKitchen</a></li>
+                <li><i class="fab fa-facebook"></i> <a href="/"> StemCorderKitchen</a></li>
+                <li><i class="fab fa-twitch"></i> <a href="/">StemCorderKitchen</a></li>
+            </ul>
+            <ul>
+                <li>Location</li>
+                <li><a href="/">ABU Zaria, Samaru Campus</a></li>
+                <li><a href="/">ABU Zaria, Kongo Campus</a></li>
+                <li><a href="/">ABU SBRS, Funtua Campus
+                </a></li>
+                <li><a href="/">NCAT Zaria, Main Campus</a></li>
+                
+            </ul>
+        </div> 
+        </div>
+   
+
+    </div>
+{% endblock main %}

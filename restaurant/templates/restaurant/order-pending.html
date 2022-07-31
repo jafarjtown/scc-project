@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">  
+
+{% endblock styles %}
+
+{% block script %}
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+{% endblock script %}
+{% block header %}
+    <header>
+        <button data-toggler><i class="fa fa-bars"></i></button>
+    </header>
+{% endblock header %}
+{% block main %}
+        {% include 'restaurant/components/aside.html' %}
+        <section class="view">
+            <div class="status">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>SN</td>
+                                <td>Food</td>
+                                <td>Category</td>
+                                <td>Quantity</td>
+                                <td>Price</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Tuowon masara</td>
+                                <td>local food</td>
+                                <td>4</td>
+                                <td>N 1500</td>
+                                <td>
+                                    <button class="status-confirm">Declined</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </section>
+{% endblock main %}

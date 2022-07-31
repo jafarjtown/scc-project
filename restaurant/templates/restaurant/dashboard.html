@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">  
+
+{% endblock styles %}
+
+{% block script %}
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+{% endblock script %}
+{% block header %}
+    <header>
+        <button data-toggler><i class="fa fa-bars"></i></button>
+    </header>
+{% endblock header %}
+{% block main %}
+{% include 'restaurant/components/aside.html' %}
+        <section class="view">
+            <p class="view-name">Hello {{user.get_full_name}}</p>
+            <small class="view-id">{{user.account_id}}</small>
+            <div class="shortcuts">
+                <div class="shortcut info">
+                    <a href="{% url 'restaurant:order-status' %}">
+                        Check Order Status
+                    <i class="fa fa-info"></i>
+                    </a>
+
+                </div>
+                <div class="shortcut his">
+                    <a href="{% url 'restaurant:order-history' %}">
+                    Check Order History
+                    <i class="fa fa-history"></i>
+                    </a>
+                </div>
+                <div class="shortcut pen">
+                    <a href="{% url 'restaurant:order-pending' %}">
+                    Check pending Order 
+                    <i class="fa fa-timeline"></i>
+                    </a>
+
+                </div>
+            </div>
+            <div class="updates">
+                <div class="update">
+                    <h3>Recent Order</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Food</td>
+                                <td>Category</td>
+                                <td>Q</td>
+                                <td>Statuss</td>
+                                <td>ref</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in user.ordered_set.all %}
+                            <tr>
+                                <td>{{order.name}}</td>
+                                <td>{{order.category}}</td>
+                                <td>{{order.quantity}}</td>
+                                <td>{{order.delivered}}</td>
+                                <td>1234</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="update">
+                    <h3>Latest News</h3>
+                </div>
+            </div>
+        </section>
+
+{% endblock main %}

@@ -1,0 +1,151 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+    margin: 0;
+    
+}
+.signin-wrapper{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../img/login_page_pic.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position-y: -50px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.signin-wrapper form{
+    width: 70%;
+    /* height: 80vh; */
+    background-color: rgba(187, 183, 183, 0.644);
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+}
+form label{
+    font-weight: 600;
+}
+form button{
+    align-self: flex-end;
+    margin: 10px 20px;
+    padding:  10px 20px;
+    background-color: white;
+    color: black;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+.head{
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid;
+    text-align: center;
+}
+.body{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.body > div{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.body img{
+    width: 140px;
+    height: 140px;
+    align-self: center;
+}
+.body label{
+    display: flex;
+    flex-direction: column;
+    margin: 3px 10px;
+    gap: 4px;
+}
+.body input{
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid;
+    outline: none;
+    
+}
+.down{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.down > label{
+    display: flex;
+    flex-direction: column;
+}
+.down > label input{
+    padding: 5px;
+    background-color: white;
+    border: none;
+    outline: none;
+}
+.down .top{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.login{
+    width: fit-content !important;
+    height: fit-content !important;
+    padding: 10px;
+}
+.login label{
+    margin: 4px;
+    display: flex;
+    flex-direction: column;
+}
+.login input{
+    width: 300px;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid;
+}
+.tail{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px;
+    border-top: 1px solid;
+}
+.tail a{
+    text-decoration: none;
+    color: inherit;
+    font-style: italic;
+}
+@media screen and (max-width: 445px){
+    .signin-wrapper{
+        height: fit-content;
+    }
+    .signin-wrapper form{
+        width: 90% !important;
+        height: 100%;
+        padding: 10px !important;
+        margin: 10px 0;
+    }
+    .signin-wrapper input{
+        width: 100%;
+    }
+    .signin-wrapper .body{
+        flex-direction: column;
+    }
+    .signin-wrapper .body img{
+        display: none;
+    }
+    .signin-wrapper .left, .signin-wrapper .right{
+        width: 100%;
+    }
+}

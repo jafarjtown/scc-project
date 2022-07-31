@@ -1,0 +1,31 @@
+{% load static %}
+<link rel="stylesheet" href="{% static './css/header.css' %}">
+<header>
+    <img src="{% static './img/logo_pic 1.jpg' %}" alt="" class="logo">
+    <nav>
+        <button class='close-nav' nav><i class='fa fa-bars'></i></button>
+        <ul ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'restaurant:categories' %}">Category</a></li>
+            <li><a href="{% url 'restaurant:about' %}">About</a></li>
+            <li><a href="{% url 'restaurant:dashboard' %}">Dashboard</a></li>
+        </ul>
+    </nav>
+    <div class="nav-socials">
+        <ul>
+            <li><a href="/"><i class="fa fa-bars"></i></a></li>
+            <li><a href="/"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+            <li><a href="/"><i class="fab fa-twitter"></i
+                ></a></li>
+            <li><a href="/"><i class="fab fa-facebook-f"></i
+                ></a></li>
+            <li><a href="/"><i class="fab fa-whatsapp"></i
+                ></a></li>
+        </ul>
+    </div>
+</header>
+<script>
+    const toggleNav = document.querySelector('[nav]')
+    toggleNav.addEventListener('click', ()=> document.querySelector('[ul]').classList.toggle('show'))
+
+</script>
