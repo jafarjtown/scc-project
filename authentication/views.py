@@ -18,6 +18,8 @@ def Login(request):
         if user is not None:
             login(request, user)
             add_message(request, constants.SUCCESS, 'login success')
+            if user.is_kitchen == True:
+                return redirect('kitchen:dashboard')
             return redirect('restaurant:dashboard')
         add_message(request, constants.ERROR, 'Invalid credentials')
     return render(request, 'authentication/login.html')

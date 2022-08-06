@@ -23,7 +23,7 @@ urlpatterns = [
     path('auth/', include('authentication.urls')),
     path('', include('restaurant.urls')),
     # path('accounts/', include('allauth.urls')),
-    # path('', include('core.urls', namespace='core') )
+    path('kitchen/', include('kitchen.urls', namespace='kitchen') )
 ]
 
 if settings.DEBUG:

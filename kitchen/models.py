@@ -31,6 +31,9 @@ class Kitchen(models.Model):
     def waiting_order(self):
         return self.objects.ordered.filter(delivered = False)
 
+class Payment(models.Model):
+    pass
+
 class Ordered(models.Model):
     customer = models.ForeignKey('authentication.User', on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=25)
@@ -40,4 +43,34 @@ class Ordered(models.Model):
     delivered = models.BooleanField(default=False)
     delivery_point = models.TextField()
     kitchen = models.ForeignKey(Kitchen, on_delete=models.SET_NULL, null=True)
+    
+    def get_kitchen_await_orders(self):
+        orders = self.objects.filter(kitchen=self.kitchen,delivered=False)
+        return len(orders)
+
+class Order(models.Model):
+    items = models.ManyToManyField(Ordered)
+    customer = models.ForeignKey('authentication.User', on_delete=models.SET_NULL, null=True)
+    ordered_date = models.DateTimeField()
+    payment = models.ForeignKey('Payment', on_delete=models.CASCADE, blank=True, null=True)
+    is_delivered = models.BooleanField(default=True)
+    
+    @property
+    def get_kitchen_await_orders(self):
+        orders = self.objects.filter(kitchen=self.kitchen,delivered=False)
+        return len(orders)
+
+    @property
+    def total(self):
+        return sum([item.price for item in self.items.all()])
+    
+    @property
+    def quantity(self):
+        return sum([items.quantity for items in self.items.all()])
+    
+
+class News(models.Model):
+    date = models.DateTimeField(auto_now=True)
+    text = models.CharField(max_length=500)
+
     
