@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block main  %}
+
+
+
+<div class="cat-item">
+    <img src="{{food.image.url}}" alt="{{food.name}}" class="cat-item-img" >
+    <input type="file" src="" alt="choose image">
+    <h3><input type="text" name="" placeholder="Name" id=""></h3>
+    <div class="cat-item-info" style="padding-right: 20px;">
+        <div style="display: bloxk;">
+            <div class=""><input style="width: inherit;" type="number" name="" placeholder="Price" id=""></div>
+            <div>
+                <label for="id_categories">Category</label>
+                <select name="Categories" id="id_categories">
+                <option value="Hausa meals">Hausa meals</option>
+                <option value="Yourba">Yourba</option>
+            </select></div>
+        </div>
+        <button data-open-order>Add Food</button>
+    </div>
+
+    <!-- <div class="cat-item-modal-wrp">
+        <div class="cat-item-modal">
+            <button class="cat-item-modal-close"><i class="fa fa-close" data-close-order></i> close</button>
+            <form action="" method="post">
+                {% csrf_token %}
+           <div class="cat-item-modal-top">
+            <input type="image" src="" alt="">
+            <img src="" alt="Food Image" class="cat-item-modal-img">
+            <div class="cat-item-modal-sets">
+                    <label for="price">
+                        Price
+                        <input type="text" value="" name='price' id="price" disabled>
+                    </label>
+                    <label for="quantity">
+                        Quantity
+                        <input type="number" value="" id="quantity" name='quantity' min='1' max='{{food.quantity}}'>
+                    </label>
+                    <label for="phone">
+                        Phone no.
+                        <input type="tel" value="" id="phone">
+                    </label> 
+             </div>
+        </div>
+        <h4>Tuwo</h4>
+        <label for="delivery_point" class="textarea-label">
+            Delivery Point
+            <textarea name="delivery_point" id="delivery_point" cols="30" rows="10"></textarea>
+        </label>
+        <button type="submit" class="cat-item-modal-btn">Add Food</button> 
+    </form>
+        </div> 
+        
+    </div>  -->
+</div>
+{% endblock main  %}

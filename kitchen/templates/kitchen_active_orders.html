@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="update">
+    <h3>Recent Order</h3>
+    <table>
+        <thead>
+            <tr>
+                {% comment %} <td>Food</td> {% endcomment %}
+                <td>User</td>
+                <td>Food</td>
+                <td>Qty</td>
+                <td>Amount</td>
+                <td>Status</td>
+            </tr>
+        </thead>
+        {% for order in object %}
+        <tbody>
+            <tr>
+                <td>{{ order.customer }}</td>
+                {% comment %} {% for items in order.items %} {% endcomment %}
+                    <td>{{ order.items.food.all.name }}</td>
+                {% comment %} {% endfor %} {% endcomment %}
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.total }}</td>
+                <td>{{ order.is_delevered }}</td>
+            </tr>
+            
+    
+        </tbody>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock main %}
