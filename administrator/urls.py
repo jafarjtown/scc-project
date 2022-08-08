@@ -8,4 +8,5 @@ urlpatterns = [
     path('orders/', views.Orders, name='orders'),
     path('customers/', views.StudentCustomers, name='student-customers'),
     path('orders-summary/', views.OrderSummary, name='orders-summary'),
+    # path('orders-summary/', views.OrderSummary, name='orders-summary'),
 ]
