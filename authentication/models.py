@@ -15,4 +15,5 @@ class User(AbstractUser):
     account_id = models.CharField(max_length=50)
     #to know wether account is kitchen or customers
     is_kitchen = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
     pass

@@ -15,9 +15,10 @@ class Food(models.Model):
     quantity = models.IntegerField()
     image = models.ImageField()
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='foods')
+    kitchen_offered = models.ForeignKey('Kitchen', on_delete=models.CASCADE, null=True, blank=True, related_name='foods')
     
 class Kitchen(models.Model):
-    foods = models.ManyToManyField('Food', related_name='kitchen_offered')
+    name = models.CharField(max_length=25)
     address = models.TextField()
     phone_number = models.CharField(max_length=15)
     image = models.ImageField()
@@ -35,23 +36,39 @@ class Payment(models.Model):
     pass
 
 class Ordered(models.Model):
-    customer = models.ForeignKey('authentication.User', on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=25)
+    image = models.CharField(blank=True, max_length=50)
     price = models.FloatField()
     quantity = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     delivered = models.BooleanField(default=False)
     delivery_point = models.TextField()
-    kitchen = models.ForeignKey(Kitchen, on_delete=models.SET_NULL, null=True)
+    phone_no = models.CharField(max_length=15)
+    kitchen = models.ForeignKey(Kitchen, on_delete=models.SET_NULL, null=True, related_name='ordered')
+    time = models.TimeField(auto_now_add=True)
+    order = models.ForeignKey('Order', on_delete=models.CASCADE, blank=True, null=True, related_name='items')
     
+    @property
     def get_kitchen_await_orders(self):
         orders = self.objects.filter(kitchen=self.kitchen,delivered=False)
         return len(orders)
+    
+    @property
+    def total_price(self):
+        return self.price * self.quantity
+    
+    @property
+    def customer(self):
+        return self.order.customer
+    
+    @property
+    def date(self):
+        return self.order.ordered_date
 
 class Order(models.Model):
-    items = models.ManyToManyField(Ordered)
     customer = models.ForeignKey('authentication.User', on_delete=models.SET_NULL, null=True)
-    ordered_date = models.DateTimeField()
+    # for date only
+    ordered_date = models.DateField()
     payment = models.ForeignKey('Payment', on_delete=models.CASCADE, blank=True, null=True)
     is_delivered = models.BooleanField(default=True)
     

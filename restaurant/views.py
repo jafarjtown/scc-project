@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
 # from SPRINT_PROJECT.kitchen.models import Food
-from kitchen.models import Category as Cat, Food, Ordered
+from kitchen.models import Category as Cat, Food, Order, Ordered
 # Create your views here.
 
 
@@ -26,12 +26,18 @@ def About(request):
     return render(request, 'restaurant/about.html')
 def OrderFood(request, id):
     if request.method == 'POST':
+        import datetime
         food = Food.objects.get(id=id)
-        ordered = Ordered.objects.create(customer=request.user, name=food.name, price=food.price, quantity=request.POST.get('quantity'), category=food.category,delivery_point=request.POST.get('delivery_point'))
+        today = datetime.date.today()
+        order_list = Order.objects.get_or_create(ordered_date = today, customer=request.user)
+        ordered = Ordered.objects.create(name=food.name,image=food.image.url, price=food.price, quantity=request.POST.get('quantity'),category=food.category,delivery_point=request.POST.get('delivery_point'),phone_no=request.POST.get('phone_no'))
+        order_list[0].items.add(ordered)
+        order_list[0].save()
         food.quantity = F('quantity') - int(request.POST.get('quantity'))
         food.save()
-        # if food.kitchen_offered is not None:
-        #     ordered.kitchen=food.kitchen_offered
+        if food.kitchen_offered is not None:
+            ordered.kitchen=food.kitchen_offered
+            ordered.save()
         return redirect('restaurant:categories')
 @login_required
 def Dashboard(request):
@@ -41,7 +47,10 @@ def OrderStatus(request):
     return render(request, 'restaurant/order-status.html')
 @login_required
 def OrderHistory(request):
-    return render(request, 'restaurant/order-history.html')
+    context = {}
+    all_orders = request.user.order_set.all()
+    context['orders'] = all_orders
+    return render(request, 'restaurant/order-history.html', context)
 @login_required
 def OrderPending(request):
     return render(request, 'restaurant/order-pending.html')

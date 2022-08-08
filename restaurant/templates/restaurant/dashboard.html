@@ -12,31 +12,35 @@
 {% block header %}
     <header>
         <button data-toggler><i class="fa fa-bars"></i></button>
+        
     </header>
 {% endblock header %}
 {% block main %}
 {% include 'restaurant/components/aside.html' %}
         <section class="view">
-            <p class="view-name">Hello {{user.get_full_name}}</p>
-            <small class="view-id">{{user.account_id}}</small>
+            <div class="account_info">
+                <p class="view-name">Hello {{user.get_full_name}}</p>
+                <small class="view-id">{{user.account_id}}</small>
+            </div>
             <div class="shortcuts">
                 <div class="shortcut info">
                     <a href="{% url 'restaurant:order-status' %}">
+                        <i class="fa fa-info"></i>
                         Check Order Status
-                    <i class="fa fa-info"></i>
+                    
                     </a>
 
                 </div>
                 <div class="shortcut his">
                     <a href="{% url 'restaurant:order-history' %}">
+                        <i class="fa fa-history"></i>
                     Check Order History
-                    <i class="fa fa-history"></i>
                     </a>
                 </div>
                 <div class="shortcut pen">
                     <a href="{% url 'restaurant:order-pending' %}">
+                        <i class="fa fa-timeline"></i>
                     Check pending Order 
-                    <i class="fa fa-timeline"></i>
                     </a>
 
                 </div>
@@ -60,7 +64,19 @@
                                 <td>{{order.name}}</td>
                                 <td>{{order.category}}</td>
                                 <td>{{order.quantity}}</td>
-                                <td>{{order.delivered}}</td>
+                                <td style="text-align: center;">
+                                    
+                                    {% if order.delivered %}
+                                        <a href="" class="confirm">
+                                            <i class="fa fa-check"></i>
+                                        </a>
+                                    {% else %}
+                                    <a href="" class="unconfirm">
+                                        <i class="fa fa-close"></i>
+                                    </a>
+                                    {% endif %}
+                                        
+                                </td>
                                 <td>1234</td>
                             </tr>
                             {% endfor %}

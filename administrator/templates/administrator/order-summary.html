@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}">  
+
+{% endblock styles %}
+
+{% block script %}
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+{% endblock script %}
+{% block header %}
+    <header>
+        <button data-toggler><i class="fa fa-bars"></i></button>
+    </header>
+{% endblock header %}
+{% block main %}
+{% include 'administrator/components/aside.html' %}
+        <div class="order-summary">
+            {% for order in orders %}
+            <h1>ORDER SUMMARY {{order.date}}</h1>
+            <div class="order-sum">
+                <b>SN</b>
+                <b>Username</b>
+                <b>Food</b>
+                <b>time</b>
+                <b>Quantity</b>
+                <b>Amount</b>
+            </div>
+            {% for item in order.items %}
+                <div class="order-sum">
+                    <b>{{orders.forloops.counter}}</b>
+                    <b>{{item.customer.username}}</b>
+                    <b>{{item.name}}</b>
+                    <b>{{item.time}}</b>
+                    <b>{{item.quantity}}</b>
+                    <b>{{item.price}}</b>
+                </div>
+            {% endfor %} 
+            
+            <b>Total: {{order.total}} </b>
+        {% endfor %}
+        </div>
+        
+            
+
+{% endblock main %}

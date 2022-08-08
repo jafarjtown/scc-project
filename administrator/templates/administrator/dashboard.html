@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}">  
+
+{% endblock styles %}
+
+{% block script %}
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+{% endblock script %}
+{% block header %}
+    <header>
+        <button data-toggler><i class="fa fa-bars"></i></button>
+    </header>
+{% endblock header %}
+{% block main %}
+{% include 'administrator/components/aside.html' %}
+        <section class="view">
+            <div class="account_info">
+                <p class="view-name">Hello {{user.get_full_name}}</p>
+                <small class="view-id">ref : {{user.account_id}}</small>
+            </div>
+            <div class="shortcuts">
+                <div class="shortcut info">
+                    <a href="{% url 'administrator:orders' %}">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Orders
+                    
+                    </a>
+                </div>
+                <div class="shortcut his">
+                    <a href="{% url 'administrator:orders-summary' %}">
+                        <i class="fa fa-table-list"></i>
+                    Orders Summary
+                    </a>
+                </div>
+                <div class="shortcut pen">
+                    <a href="{% url 'restaurant:order-pending' %}">
+                        <i class="fa fa-timeline"></i>
+                    Check pending Order 
+                    </a>
+
+                </div>
+                <div class="shortcut pen">
+                    <a href="{% url 'restaurant:order-pending' %}">
+                        <i class="fa-solid fa-utensils"></i>
+                    New Foods
+                    </a>
+                </div>
+                <div class="shortcut pen">
+                    <a href="{% url 'restaurant:order-pending' %}">
+                        <i class="fa fa-timeline"></i>
+                    Not Available
+                    </a>
+
+                </div>
+                <div class="shortcut pen">
+                    <a href="{% url 'restaurant:order-pending' %}">
+                        <i class="fa-solid fa-kitchen-set"></i>
+                    Kitchen
+                    </a>
+                </div>
+            </div>
+        </section>
+
+{% endblock main %}

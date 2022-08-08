@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     # our apps
     'restaurant',
     'kitchen',
-    'authentication'
+    'authentication',
+    'administrator'
     
     # 'allauth',
     # 'allauth.account',

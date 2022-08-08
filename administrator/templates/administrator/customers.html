@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}">  
+
+{% endblock styles %}
+
+{% block script %}
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+{% endblock script %}
+{% block header %}
+    <header>
+        <button data-toggler><i class="fa fa-bars"></i></button>
+    </header>
+{% endblock header %}
+{% block main %}
+{% include 'administrator/components/aside.html' %}
+
+        <div class="customer-wrapper">
+            
+            {% for customer in customers %}
+                <div class="customer">
+                    <img src="{{customer.avatar}}" />
+                    <p>
+                        {{customer.get_full_name}}
+                    </p>
+                    <p>{{customer.email}}</p>
+                </div>
+            {% endfor %}
+                
+        </div>
+
+{% endblock main %}

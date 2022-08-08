@@ -18,30 +18,36 @@
 {% include 'restaurant/components/aside.html' %}
         <section class="view">
             <div class="status">
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>SN</td>
-                                <td>Food</td>
-                                <td>Category</td>
-                                <td>Quantity</td>
-                                <td>Price</td>
-                                <td>Status</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Tuowon masara</td>
-                                <td>local food</td>
-                                <td>4</td>
-                                <td>N 1500</td>
-                                <td>
-                                    <button class="status-confirm">Declined</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    
+                            {% for order in orders %}
+                                <div class="order-item-wrapper">
+                                    <h2>{{order.ordered_date}}</h2>
+                                    <div class="order-item">
+                                        <span>Name</span>
+                                        <span>Category</span>
+                                        <span>kitchen</span>
+                                        <span>quantity</span>
+                                        <span>price</span>  
+                                    </div>
+                                    {% for item in order.items.all %}
+                                        <div class="order-item">
+                                            <span>{{item.name}}</span>
+                                            <span>{{item.category.name}}</span>
+                                            <span>{{item.kitchen.name}}</span>
+                                            <span>{{item.quantity}}</span>
+                                            <span>N{{item.total_price}}</span>  
+                                        </div>
+                                    {% endfor %}
+                                    <div class="order-item">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span>Total</span>
+                                        <span>N{{order.total_price}}</span>  
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        
             </div>
         </section>
 {% endblock main %}
