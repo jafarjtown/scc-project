@@ -6,6 +6,9 @@ from django.shortcuts import render
 def Dashboard(request):
     return render(request, 'administrator/dashboard.html')
 
+def Profile(request):
+    return render(request, 'administrator/profile.html')
+
 
 def Orders(request):
     user = request.user

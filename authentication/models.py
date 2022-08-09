@@ -17,3 +17,11 @@ class User(AbstractUser):
     is_kitchen = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     pass
+
+
+    def orders(self):
+        all_orders = list()
+        
+        for order in self.order_set.all():
+            all_orders.extend(order.items.all())
+        return all_orders

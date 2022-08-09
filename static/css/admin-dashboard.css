@@ -314,6 +314,67 @@ section.view{
     margin: 4px 0;
     font-weight: 600;
 }
+.profile{
+    width: 800px;
+    height: fit-content;
+    padding: 20px;
+    margin: auto;
+    
+}
+.profile form{
+    width: fit-content;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    'img img'
+    'fullname fullname'
+    'username dob'
+    'phone gender'
+    'email email'
+    'k btn'
+    ;
+}
+.profile input{
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 5px;
+    outline: none;
+}
+.profile input[disabled]{
+    background-color: rgb(209, 209, 209);
+    cursor: not-allowed;
+    /* color: white; */
+}
+.profile [full_name]{
+    grid-area: fullname;
+}
+.profile [email]{
+    grid-area: email;
+}
+.profile [username]{
+    grid-area: username;
+}
+.profile [dob]{
+    grid-area: dob;
+}
+.profile [phone]{
+    grid-area: phone;
+}
+.profile button{
+    grid-area: btn;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+}
+.profile form img{
+    grid-area: img;
+    height: 150px;
+    border: 1px solid;
+}
 @media screen and (max-width: 445px) {
     .status{
         width: 95%;

@@ -31,7 +31,7 @@ class RestaurantService(models.Model):
                 if obj.get(str(o.order.ordered_date)) == None:
                     obj[str(o.order.ordered_date)] = {'items': [], 'date': o.order.ordered_date, 'total': 0}
                 obj[str(o.order.ordered_date)]['items'].append(o)
-                obj[str(o.order.ordered_date)]['total'] += int(o.price)
+                obj[str(o.order.ordered_date)]['total'] += (int(o.price) * int(o.quantity))
                 # ord.add(o.order)
         print(obj)
         return obj.values()

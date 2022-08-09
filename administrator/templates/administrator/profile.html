@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}">  
+
+{% endblock styles %}
+
+{% block script %}
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+{% endblock script %}
+{% block header %}
+    <header>
+        <button data-toggler><i class="fa fa-bars"></i></button>
+    </header>
+{% endblock header %}
+{% block main %}
+{% include 'administrator/components/aside.html' %}
+       
+            <div class="profile">
+                <form action="/" method="post">
+                    {% csrf_token %}
+                    <img src="" alt="">
+                    <input full_name type="text" value="{{user.get_full_name}}">
+                    <input gender type="text" value="{{user.gender}}" placeholder="gender" disabled>
+                    <input dob type="text" value="{{user.date_of_birth}}" disabled>
+                    <input email type="email" value="{{user.email}}">
+                    <input phone type="tel" value="{{user.phone_no}}">
+                    <input username type="text" value="{{user.username}}" disabled>
+                    <button type="submit">update</button>
+                </form>
+            </div>
+        
+
+{% endblock main %}

@@ -2,6 +2,7 @@
 {% load static %}
     
 {% block styles %}
+<link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}">  
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">  
 
 {% endblock styles %}
@@ -15,34 +16,41 @@
     </header>
 {% endblock header %}
 {% block main %}
-{% include 'restaurant/components/aside.html' %}
-        <section class="view">
-            <div class="status">
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>SN</td>
-                                <td>Food</td>
-                                <td>Image</td>
-                                <td>Category</td>
-                                <td>Quantity</td>
-                                <td>Price</td>
-                                <td>Status</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Tuowon masara</td>
-                                <td>local food</td>
-                                <td>4</td>
-                                <td>N 1500</td>
-                                <td>
-                                    <button class="status-confirm">confirm</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+{% include 'administrator/components/aside.html' %}
+
+
+    <div class="order-item-wrapper" >
+        <h1>All Orders</h1>
+{% for order in user.orders %}
+        <div class="order-item" style='width: 60%'>
+            <img src="{{order.image}}" />
+            <div>
+                <p>Category: <b>{{order.category.name}}</b></p>
+                <p>Name: <b>{{order.name}}</b></p>
             </div>
-        </section>
+            <div>
+                <p>Quantity: <b>{{order.quantity}}</b></p>
+                <p>Time: <b>{{order.time}}</b></p>
+                <p>Date: <b>{{order.date}}</b></p>
+                <p>Total: <b>{{order.total_price}}</b></p>
+            </div>
+            <div>
+                <b>
+                    
+                    {% if order.delivered %}
+                        Delivered
+                    {% else %}
+                        Not Delivered
+                    {% endif %}
+                        
+                </b>
+            </div>
+        </div>
+
+    {% endfor %}
+    </div>
+    
+        
+
+
 {% endblock main %}

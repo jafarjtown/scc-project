@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
+import django
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -88,6 +90,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SPRINT_PROJECT.wsgi.application'
 
+# Email settings
+
+# EMAIL_BACKEND = django.c
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
