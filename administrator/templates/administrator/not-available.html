@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}">  
+    <style>
+        .request-food{
+            padding: 10px;
+            background-color: white;
+            text-decoration: none;
+            color: black;
+            font-weight: 600;
+        }
+    </style>
+{% endblock style %}
+
+{% block script %}
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+{% endblock script %}
+{% block header %}
+    <header>
+        <button data-toggler><i class="fa fa-bars"></i></button>
+    </header>
+{% endblock header %}
+{% block main %}
+{% include 'administrator/components/aside.html' %}
+    <div class="cat-list-wrp">
+        <h1>Not Available</h1>
+
+        <div class="cat-list">
+{% for food in foods %}
+
+<div class="cat-item">
+    <img src="{{food.image.url}}" alt="{{food.name}}" class="cat-item-img">
+    <h3>{{food.name}}</h3>
+    <div class="cat-item-info">
+        <div class="cat-item-price">N{{food.price}}</div>
+        <a class='request-food' href='/'>Request</a>
+    </div>
+</div>
+
+{% endfor %}
+        </div>
+
+    </div>
+{% endblock main %}

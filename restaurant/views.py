@@ -14,9 +14,14 @@ def Category(request):
     context = {'categories': categories}
     return render(request, 'restaurant/categories.html', context)
 
+def AllFoods(request):
+    foods = Food.objects.filter(quantity__gte=1)
+    context = { "category": 'All Foods', 'foods': foods}
+    return render(request, 'restaurant/cat-list.html', context)
+
 def CategoryList(request, category):
     try:
-        foods = Cat.objects.get(name = category).foods.all()
+        foods = Cat.objects.get(name = category).foods.filter(quantity__gte=1)
         context = { "category": category, 'foods': foods}
         return render(request, 'restaurant/cat-list.html', context)
     except:
@@ -54,3 +59,23 @@ def OrderHistory(request):
 @login_required
 def OrderPending(request):
     return render(request, 'restaurant/order-pending.html')
+
+@login_required
+def Profile(request):
+    return render(request, 'restaurant/profile.html')
+
+@login_required
+def UpdateProfile(request):
+    if request.method == 'POST':
+        user = request.user
+        data = request.POST
+        if data.get('email'): user.email = data.get('email')
+        if data.get('date of birth'): user.date_of_birth = data.get('date of birth')
+        if data.get('phone no'): user.phone_no = data.get('phone no')
+        if data.get('gender'): user.gender = data.get('gender')
+        if data.get('full name'):
+            first_name, last_name = data.get('full name').split(' ')
+            user.first_name = first_name
+            user.last_name = last_name
+        user.save()
+    return render(request, 'restaurant/update_profile.html')

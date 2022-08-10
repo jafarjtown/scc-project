@@ -9,4 +9,5 @@ urlpatterns = [
     path('logout/', LogOut, name='logout'),
     path('password_reset/', PasswordResetView.as_view(template_name='authentication/forgetten_password.html', success_url='/auth/password_reset_done')),
     path('password_reset_done/', PasswordResetDoneView.as_view(template_name='authentication/sent_password.html'), name='password_reset_done'),
+    path('password_reset_confirm/', PasswordResetDoneView.as_view(template_name='authentication/sent_password.html'), name='password_reset_done'),
 ]

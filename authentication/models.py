@@ -16,6 +16,7 @@ class User(AbstractUser):
     #to know wether account is kitchen or customers
     is_kitchen = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
+    gender = models.CharField(max_length=10)
     pass
 
 

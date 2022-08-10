@@ -92,7 +92,10 @@ WSGI_APPLICATION = 'SPRINT_PROJECT.wsgi.application'
 
 # Email settings
 
-# EMAIL_BACKEND = django.c
+# development
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# production
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -157,3 +160,9 @@ SITE_ID = 1
 
 AUTH_USER_MODEL  = 'authentication.User'
 LOGIN_URL = 'authentication:login'
+
+
+
+# for postgres in heroku
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)

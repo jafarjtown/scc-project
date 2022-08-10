@@ -240,7 +240,7 @@ section.view{
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: center;
     gap: 10px;
     padding: 10px;
 }
@@ -389,6 +389,17 @@ section.view{
 
 }
     .profile .value,.profile-bottom .value{
+        width: 100%;
+    }
+    .order-item-wrapper{
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .order-item{
+        width: 100%;
+        flex-direction: column;
+    }
+    .order-item img{
         width: 100%;
     }
     

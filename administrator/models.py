@@ -2,12 +2,25 @@ from django.db import models
 
 # Create your models here.
 
+class Blog(models.Model):
+    author = models.ForeignKey('authentication.User', models.SET_NULL, null=True,  related_name='posts')
+    title = models.CharField(max_length=50)
+    body = models.TextField()
+
+
 class RestaurantService(models.Model):
     admin = models.OneToOneField('authentication.User', models.SET_NULL, null=True,  related_name='restaurant')
     kitchens = models.ManyToManyField('kitchen.Kitchen', related_name='restaurant', )
     address = models.TextField()
     name = models.CharField(max_length=25)
     phone_no = models.CharField(max_length=15)
+    
+    @property
+    def not_available_foods(self):
+        foods = list()
+        for kitchen in self.kitchens.all():
+            foods.extend(kitchen.foods.filter(quantity__lt=1))
+        return foods
     
     @property
     def customers(self):

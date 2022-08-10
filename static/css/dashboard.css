@@ -267,5 +267,9 @@ section.view{
     .profile .value,.profile-bottom .value{
         width: 100%;
     }
+    .shortcuts{
+        flex-direction: column;
+        gap: 10px;
+    }
     
 }

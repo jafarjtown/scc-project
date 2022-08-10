@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}">  
+
+{% endblock styles %}
+    
+    {% block style %}
+        <style>
+            .new-post-btn{
+                width: 100px;
+                padding: 10px;margin: 10px;
+                background-color: white;
+                color: black;
+                text-decoration: none;
+                height: fit-content;
+            }
+            .post{
+                background: rgb(12 88 12);
+                color: white;
+                width: fit-content;
+                padding: 10px;
+                max-height: 500px;
+                width: 350px;
+                border-radius: 10px;
+            }
+        </style>
+    {% endblock style %}
+        
+{% block script %}
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+{% endblock script %}
+{% block header %}
+    <header>
+        <button data-toggler><i class="fa fa-bars"></i></button>
+    </header>
+{% endblock header %}
+{% block main %}
+{% include 'administrator/components/aside.html' %}
+<section class="view">
+            <a class="new-post-btn" href="{% url 'administrator:config-post' %}">new post</a>
+            
+       {% for post in posts %}
+            <div class="post">
+                <h2>{{post.title}}</h2>
+                <p>
+                    {{post.body}}
+                </p>
+                <div class="buttons">
+                    <a href="">Delete</a>
+                    <a href="{% url 'administrator:update-post' post.id %}">Update</a>
+                </div>
+            </div>
+       {% endfor %}
+        
+        </section>
+
+{% endblock main %}

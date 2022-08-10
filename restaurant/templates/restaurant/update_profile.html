@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}">  
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">  
+
+{% endblock styles %}
+
+{% block script %}
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+{% endblock script %}
+{% block header %}
+    <header>
+        <button data-toggler><i class="fa fa-bars"></i></button>
+    </header>
+{% endblock header %}
+{% block main %}
+{% include 'restaurant/components/aside.html' %}
+       <section class="view">
+             <div class="profile">
+                <form method="post">
+                    {% csrf_token %}
+                    <img src="" alt="">
+                    <input full_name type="text" name="full name" value="{{user.get_full_name}}" placeholder="Full name">
+                    {% if user.date_of_birth %}
+                        <input dob type="text" value="{{user.date_of_birth}}" disabled>
+                        {% else %}
+                        <input type="date" name="date of birth" id="">
+                    {% endif %}
+
+                    {% if user.gender %}
+                    <input gender type="text" value="{{user.gender}}" placeholder="gender" disabled>
+                        {% else %}
+                        <select name="gender" id="">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    {% endif %}
+                    <input email name="email" type="email" value="{{user.email}}" placeholder="Email">
+                    <input phone name="phone no" type="tel" value="{{user.phone_no}}" placeholder="Phone no">
+                    <input username type="text" value="{{user.username}}" disabled>
+                    <button type="submit">update</button>
+                </form>
+            </div>
+       </section>
+       
+        
+
+{% endblock main %}
