@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path,include
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView,PasswordResetConfirmView, PasswordResetCompleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,7 +25,12 @@ urlpatterns = [
     path('auth/', include('authentication.urls')),
     path('', include('restaurant.urls')),
     # path('accounts/', include('allauth.urls')),
-    path('kitchen/', include('kitchen.urls', namespace='kitchen') )
+    path('kitchen/', include('kitchen.urls', namespace='kitchen') ),
+    
+    path('password_reset/', PasswordResetView.as_view(template_name='authentication/forgetten_password.html'), name='password_reset'),
+    path('password_reset_done/', PasswordResetDoneView.as_view(template_name='authentication/sent_password.html'), name='password_reset_done'),
+    path('password_reset_confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='authentication/change_password.html'), name='password_reset_confirm'),
+    path('password_reset_complate/', PasswordResetCompleteView.as_view(template_name='authentication/password_reset_complete.html'), name='password_reset_complete'),
 ]
 
 if settings.DEBUG:

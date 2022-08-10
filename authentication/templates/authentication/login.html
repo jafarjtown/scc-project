@@ -17,7 +17,7 @@
     </label>
     <button type="submit">Login</button>
     <div class="tail">
-        <a href="/">forgot password?</a>
+        <a href="{% url 'password_reset' %}">forgot password?</a>
         <a href="{% url 'authentication:register' %}">Sign Up</a>
     </div>
   </form>

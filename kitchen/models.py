@@ -26,11 +26,11 @@ class Kitchen(models.Model):
     
     @property
     def available_foods(self):
-        return self.objects.foods.filter(quantity__gte = 1)
+        return self.foods.filter(quantity__gte = 1)
     
     @property
     def waiting_order(self):
-        return self.objects.ordered.filter(delivered = False)
+        return self.ordered.filter(delivered = False)
 
 class Payment(models.Model):
     pass

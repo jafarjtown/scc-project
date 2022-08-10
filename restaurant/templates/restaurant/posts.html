@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+
+<div class="post-wrapper" style="padding: 10px;height: 100vh;display: flex;flex-direction: column;">
+    <div class="post-header" style="
+    font-size: xx-large;
+    font-weight: 600;
+    margin-bottom: 10px;
+">
+        {{post.title}}
+    </div>
+    <p style="
+    flex: 2;
+">
+        {{post.body}}
+    </p>
+    <form method="post" style="
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    max-width: 400px;
+">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" {% if user.username %}
+        value="{{user.username}}"
+    {% endif %} style="
+    padding: 10px;
+    outline: none;
+">
+    <textarea name="body" id="" cols="30" rows="10" style="
+    padding: 10px;
+    outline: none;
+"></textarea>
+    <button type="submit" style="
+    padding: 10px;
+">Comment</button>
+    </form>
+</div>
+
+{% endblock main %}
+    
+ 

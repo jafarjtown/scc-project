@@ -391,7 +391,11 @@ section.view{
     .profile .value,.profile-bottom .value{
         width: 100%;
     }
+    .order-summary{
+        width: fit-content;
+    }
     .order-item-wrapper{
+        width: fit-content;
         justify-content: flex-start;
         align-items: center;
     }

@@ -3,6 +3,8 @@ from django.shortcuts import redirect, render
 from django.contrib.messages import add_message, constants
 from authentication.models import User
 from django.contrib.auth import login, logout,authenticate
+
+from decorators import is_logged_in
 # Create your views here.
 
 
@@ -10,6 +12,7 @@ def LogOut(request):
     logout(request)
     return redirect('restaurant:welcome')
 
+@is_logged_in
 def Login(request):
     if request.method == 'POST':
         u = request.POST.get('username')
@@ -24,6 +27,7 @@ def Login(request):
         add_message(request, constants.ERROR, 'Invalid credentials')
     return render(request, 'authentication/login.html')
 
+@is_logged_in
 def Register(request):
     if request.method == 'POST':
         p1 = request.POST.get('p1')

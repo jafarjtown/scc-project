@@ -6,7 +6,16 @@ class Blog(models.Model):
     author = models.ForeignKey('authentication.User', models.SET_NULL, null=True,  related_name='posts')
     title = models.CharField(max_length=50)
     body = models.TextField()
+    
+    
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('restaurant:blog', kwargs={'post_id': self.pk})
 
+class BlogComment(models.Model):
+    username = models.CharField(max_length=25)
+    body = models.TextField()
+    post = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True, blank=True)
 
 class RestaurantService(models.Model):
     admin = models.OneToOneField('authentication.User', models.SET_NULL, null=True,  related_name='restaurant')
@@ -21,6 +30,13 @@ class RestaurantService(models.Model):
         for kitchen in self.kitchens.all():
             foods.extend(kitchen.foods.filter(quantity__lt=1))
         return foods
+    
+    @property
+    def foods(self):
+        all_foods = list()
+        for kt in self.kitchens.all():
+            all_foods.extend(kt.available_foods)
+        return all_foods
     
     @property
     def customers(self):

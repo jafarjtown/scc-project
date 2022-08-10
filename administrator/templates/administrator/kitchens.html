@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}">  
+
+{% endblock styles %}
+
+{% block script %}
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+{% endblock script %}
+{% block header %}
+    <header>
+        <button data-toggler><i class="fa fa-bars"></i></button>
+    </header>
+{% endblock header %}
+{% block main %}
+{% include 'administrator/components/aside.html' %}
+        <section class="view">
+            <div class="shortcuts">
+                {% for kitchen in kitchens %}
+                 <div class="shortcut pen">
+                    <a href="{% url 'restaurant:order-pending' %}">
+                        <i class="fa-solid fa-kitchen-set"></i>
+                    {{kitchen.name}}
+                    </a>
+                </div>
+                {% endfor %}
+               
+            </div>
+        </section>
+
+{% endblock main %}

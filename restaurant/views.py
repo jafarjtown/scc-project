@@ -1,7 +1,10 @@
+from re import M
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
 # from SPRINT_PROJECT.kitchen.models import Food
+from administrator.models import Blog
+from decorators import customer_only
 from kitchen.models import Category as Cat, Food, Order, Ordered
 # Create your views here.
 
@@ -27,8 +30,16 @@ def CategoryList(request, category):
     except:
         return redirect('restaurant:categories')
 
+def PostHome(request, post_id):
+    post = Blog.objects.get(id = post_id)
+    if request.method == 'POST':
+        username = request.POST.get('username') or 'Anonymous'
+        body = request.POST.get('body')
+        
+    return render(request, 'restaurant/posts.html', {'post': post })
 def About(request):
     return render(request, 'restaurant/about.html')
+@customer_only
 def OrderFood(request, id):
     if request.method == 'POST':
         import datetime
@@ -44,19 +55,28 @@ def OrderFood(request, id):
             ordered.kitchen=food.kitchen_offered
             ordered.save()
         return redirect('restaurant:categories')
+
+
 @login_required
+@customer_only
 def Dashboard(request):
-    return render(request, 'restaurant/dashboard.html')
+    user = request.user
+    posts = Blog.objects.all()
+    recents = user.recents_orders
+    return render(request, 'restaurant/dashboard.html', {'posts': posts, 'recents':recents})
 @login_required
+@customer_only
 def OrderStatus(request):
     return render(request, 'restaurant/order-status.html')
 @login_required
+@customer_only
 def OrderHistory(request):
     context = {}
     all_orders = request.user.order_set.all()
     context['orders'] = all_orders
     return render(request, 'restaurant/order-history.html', context)
 @login_required
+@customer_only
 def OrderPending(request):
     return render(request, 'restaurant/order-pending.html')
 
@@ -65,6 +85,7 @@ def Profile(request):
     return render(request, 'restaurant/profile.html')
 
 @login_required
+@customer_only
 def UpdateProfile(request):
     if request.method == 'POST':
         user = request.user

@@ -1,8 +1,5 @@
-from multiprocessing import context
-from django import forms
-from django.shortcuts import render
-from requests import request
 
+from django.shortcuts import render
 from . import models
 
 # Create your views here.

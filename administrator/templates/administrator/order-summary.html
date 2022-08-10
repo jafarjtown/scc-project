@@ -29,7 +29,7 @@
             </div>
             {% for item in order.items %}
                 <div class="order-sum">
-                    <b>{{item.forloop.counter}}</b>
+                    <b>{{forloop.counter}}</b>
                     <b>{{item.customer.username}}</b>
                     <b>{{item.name}}</b>
                     <b>{{item.time}}</b>
