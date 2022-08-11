@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='account_type',
-            field=models.CharField(choices=[('Staff', 'Staff'), ('Student', 'Student'), ('Other', 'Other')], default=('Student', 'Student'), max_length=7),
+            field=models.CharField(choices=[('Staff', 'Staff'), ('Student', 'Student'), ('Other', 'Other')], default=('Student', 'Student'), max_length=50),
         ),
         migrations.AddField(
             model_name='user',
